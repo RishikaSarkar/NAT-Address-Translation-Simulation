@@ -1,0 +1,20 @@
+{
+  "name": "nat-simulator-monorepo",
+  "version": "1.0.0",
+  "private": true,
+  "workspaces": [
+    "shared",
+    "server",
+    "client"
+  ],
+  "scripts": {
+    "install:all": "npm install",
+    "dev": "concurrently -k -p \"[{name}]\" -n \"SERVER,CLIENT\" -c \"yellow.bold,cyan.bold\" \"npm run dev --workspace=@nat-simulator/server\" \"npm run dev --workspace=@nat-simulator/client\"",
+    "test": "npm run test --workspace=@nat-simulator/server",
+    "build": "npm run build --workspace=@nat-simulator/server && npm run build --workspace=@nat-simulator/client",
+    "typecheck": "npm run typecheck --workspace=@nat-simulator/server && npm run typecheck --workspace=@nat-simulator/client"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2"
+  }
+}
